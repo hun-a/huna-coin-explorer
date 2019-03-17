@@ -2,18 +2,37 @@ import React, { Component } from "react";
 import { createGlobalStyle } from "styled-components";
 import AppPresenter from "./AppPresenter";
 import reset from "styled-reset";
+import axios from "axios";
 import typography from "../../typography";
+import { API_URL } from "../../constants";
 
 const baseStyles = () => createGlobalStyle`
   ${reset};
-  ${typography}
+  ${typography};
+  a{
+    text-decoration: none !important;
+  }
 `;
 
 class App extends Component {
+  state = {
+    isLoading: true
+  };
+  componentDidMount = () => {
+    this._getData();
+  };
   render() {
     baseStyles();
-    return <AppPresenter />;
+    return <AppPresenter {...this.state} />;
   }
+  _getData = async () => {
+    const request = await axios.get(`${API_URL}/blocks`);
+    const blocks = request.data;
+    this.setState({
+      blocks,
+      isLoading: false
+    });
+  };
 }
 
 export default App;
