@@ -1,15 +1,18 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { createGlobalStyle } from "styled-components";
+import AppPresenter from "./AppPresenter";
 import reset from "styled-reset";
+import typography from "../../typography";
 
 const baseStyles = () => createGlobalStyle`
-  ${reset}
+  ${reset};
+  ${typography}
 `;
 
 class App extends Component {
   render() {
     baseStyles();
-    return null;
+    return <AppPresenter />;
   }
 }
 
