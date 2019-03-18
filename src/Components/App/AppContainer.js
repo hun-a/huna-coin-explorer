@@ -5,7 +5,7 @@ import reset from "styled-reset";
 import axios from "axios";
 import flatten from "lodash.flatten";
 import typography from "../../typography";
-import { API_URL } from "../../constants";
+import { API_URL, WS_URL } from "../../constants";
 
 const baseStyles = () => createGlobalStyle`
   ${reset};
@@ -21,6 +21,7 @@ class App extends Component {
   };
   componentDidMount = () => {
     this._getData();
+    this._connectToWs();
   };
   render() {
     baseStyles();
@@ -35,6 +36,12 @@ class App extends Component {
       blocks: reversedBlocks,
       transactions: txs,
       isLoading: false
+    });
+  };
+  _connectToWs = () => {
+    const ws = new WebSocket(WS_URL);
+    ws.addEventListener("message", message => {
+      console.log(message);
     });
   };
 }
