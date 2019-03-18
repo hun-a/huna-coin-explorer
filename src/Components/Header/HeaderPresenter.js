@@ -13,7 +13,8 @@ const Title = styled.h1`
 const HeaderContainer = styled.header`
   width: 100%;
   display: flex;
-  align-item: center;
+  align-items: center;
+  justify-content: center;
   padding: 50px 20px;
 `;
 
@@ -68,12 +69,16 @@ const HeaderPresenter = props => {
             </ListItem>
             <ListItem>
               <Link to="/blocks">
-                <SLink isActive={window.location.pathname === "/blocks"}>Blocks</SLink>
+                <SLink isActive={window.location.pathname === "/blocks"}>
+                  Blocks
+                </SLink>
               </Link>
             </ListItem>
             <ListItem>
               <Link to="/transactions">
-                <SLink isActive={window.location.pathname === "/transactions"}>Transactions</SLink>
+                <SLink isActive={window.location.pathname === "/transactions"}>
+                  Transactions
+                </SLink>
               </Link>
             </ListItem>
           </List>
